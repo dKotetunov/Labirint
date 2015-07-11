@@ -56,7 +56,7 @@ class Dron
     # Enqueue start position.
     @queue = []
     enqueue_cell([], @start_x, @start_y)
-    puts @start_x, @start_y
+    puts "x = #{@start_x}, y= #{@start_y}"
     # Loop as long as there are cells to visit and no solution has
     # been found yet.
     path = nil
