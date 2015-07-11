@@ -3,6 +3,7 @@ class Maze
   # Each queue entry is a path, that is list of coordinates with the
   # last coordinate being the one that shall be visited next.
 
+  #DIRECTIONS = { east: [1, 0], west: [-1, 0], north: [0, 1], south: [0, -1]}
   DIRECTIONS = [ [1, 0], [-1, 0], [0, 1], [0, -1] ]
 
   def initialize(width, height)
@@ -55,7 +56,7 @@ class Maze
     # Enqueue start position.
     @queue = []
     enqueue_cell([], @start_x, @start_y)
- 
+    puts @start_x, @start_y
     # Loop as long as there are cells to visit and no solution has
     # been found yet.
     path = nil
@@ -160,13 +161,13 @@ class Maze
   def enqueue_cell(path, x, y)
     # Add new coordinates to the current path and enqueue the new path.
     @queue << path + [[x, y]]
-    puts @queue
+
 
   end
 end
  
 # Demonstration:
-maze = Maze.new 20, 10
+maze = Maze.new 10,10
 maze.solve
 maze.print
 
