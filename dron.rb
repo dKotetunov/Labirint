@@ -1,4 +1,4 @@
-class Maze
+class Dron
 
   # Each queue entry is a path, that is list of coordinates with the
   # last coordinate being the one that shall be visited next.
@@ -30,7 +30,7 @@ class Maze
     generate
   end
 
-  
+
   # Print a nice ASCII maze.
   def print
     # Special handling: print the top line.
@@ -49,10 +49,10 @@ class Maze
 
 
   def solve
- 
+
     # Clean up.
     reset_visiting_state
- 
+
     # Enqueue start position.
     @queue = []
     enqueue_cell([], @start_x, @start_y)
@@ -63,7 +63,7 @@ class Maze
     until path || @queue.empty?
       path = solve_visit_cell
     end
- 
+
     if path
       # Mark the cells that make up the shortest path.
       for x, y in path
@@ -73,7 +73,7 @@ class Maze
       puts "No solution found?!"
     end
   end
- 
+
   private
 
 
@@ -130,13 +130,13 @@ class Maze
     path = @queue.shift
     # The cell to visit is the last entry in the path.
     x, y = path.last
- 
+
     # Have we reached the end yet?
     return path  if x == @end_x && y == @end_y
- 
+
     # Mark cell as visited.
     @visited[x][y] = true
- 
+
     for dx, dy in DIRECTIONS
       if dx.nonzero?
         # Left / Right
@@ -153,10 +153,10 @@ class Maze
         end
       end
     end
- 
+
     nil         # No solution yet.
   end
- 
+
   # Enqueue a new coordinate to visit.
   def enqueue_cell(path, x, y)
     # Add new coordinates to the current path and enqueue the new path.
@@ -165,9 +165,9 @@ class Maze
 
   end
 end
- 
+
 # Demonstration:
-maze = Maze.new 10,10
-maze.solve
-maze.print
+dron = Dron.new 10,10
+dron.solve
+dron.print
 
