@@ -29,8 +29,7 @@ class Way
   end
 
   def find_way
-# Clean up.
-    reset_visiting_state
+
 # Enqueue start position.
     @queue = []
     enqueue_cell([], @start_x, @start_y)
@@ -50,8 +49,8 @@ class Way
       puts "No solution found?!"
     end
   end
-  private
 
+  private
 
   # Reset the VISITED state of all cells.
   def reset_visiting_state

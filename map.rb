@@ -1,6 +1,6 @@
 require '../Labirint/way'
 class Map
-
+  DIRECTIONS = [ [1, 0], [-1, 0], [0, 1], [0, -1] ]
   def initialize(width,height)
     @width   = width
     @height  = height
@@ -25,6 +25,8 @@ class Map
 
   # Print a nice ASCII maze.
   def print
+# Clean up.
+    reset_visiting_state
     # Special handling: print the top line.
     puts @width.times.inject("+") {|str, x| str << (x == @start_x ? "   +" : "---+")}
 
@@ -46,4 +48,7 @@ class Map
     generate_visit_cell(@start_x, @start_y)
   end
 
+  def reset_visiting_state
+    @visited = Array.new(@width) { Array.new(@height) }
+  end
 end

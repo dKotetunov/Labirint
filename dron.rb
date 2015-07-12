@@ -33,7 +33,7 @@ end
 #dron.print
 dron = Map.new(10,10)
 dron.print
-dron = Way.new(10,10)
+#dron = Way.new(10,10)
 dron.find_way
 
 
