@@ -1,4 +1,4 @@
-require '../Labirint/way'
+
 class Map
   DIRECTIONS = [ [1, 0], [-1, 0], [0, 1], [0, -1] ]
   def initialize(width,height)

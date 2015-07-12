@@ -23,6 +23,7 @@ class Dron
     # "Hack" to print the exit.
     @horizontal_walls[@end_x][@end_y] = false
 
+    generate
   end
 
 end

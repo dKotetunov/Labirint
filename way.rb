@@ -1,4 +1,4 @@
-require '../Labirint/map'
+
 class Way
 
   # Each queue entry is a path, that is list of coordinates with the
