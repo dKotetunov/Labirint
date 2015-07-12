@@ -55,38 +55,34 @@ class Map
     (0...@width).cover?(x) && (0...@height).cover?(y) && !@visited[x][y]
   end
 
-  # Generate the maze.
+  
   def generate
     reset_visiting_state
     generate_visit_cell(@start_x, @start_y)
   end
 
-  # Depth-first maze generation.
+
   def generate_visit_cell(x, y)
-    # Mark cell as visited.
+
     @visited[x][y] = true
 
-    # Randomly get coordinates of surrounding cells (may be outside
-    # of the maze range, will be sorted out later).
     coordinates = DIRECTIONS.shuffle.map { |dx, dy| [x + dx, y + dy] }
 
     for new_x, new_y in coordinates
       next unless move_valid?(new_x, new_y)
 
-      # Recurse if it was possible to connect the current and
-      # the cell (this recursion is the "depth-first" part).
       connect_cells(x, y, new_x, new_y)
       generate_visit_cell(new_x, new_y)
     end
   end
 
-  # Try to connect two cells. Returns whether it was valid to do so.
+
   def connect_cells(x1, y1, x2, y2)
     if x1 == x2
-      # Cells must be above each other, remove a horizontal wall.
+
       @horizontal_walls[x1][ [y1, y2].min ] = false
     else
-      # Cells must be next to each other, remove a vertical wall.
+
       @vertical_walls[ [x1, x2].min ][y1] = false
     end
   end

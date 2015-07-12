@@ -1,5 +1,4 @@
-require '../Labirint/way'
-require '../Labirint/map'
+
 class Dron
 
   DIRECTIONS = [ [1, 0], [-1, 0], [0, 1], [0, -1] ]
@@ -23,6 +22,6 @@ class Dron
 end
 
 # Demonstration:
-dron = Map.new 5,5
-dron.find_way
-dron.print
+@dron = Map.new 5,5
+@dron.find_way
+@dron.print
