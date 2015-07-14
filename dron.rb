@@ -1,27 +1,44 @@
+require './maze_sides'
+require './maze'
 
 class Dron
-
-  DIRECTIONS = [ [1, 0], [-1, 0], [0, 1], [0, -1] ]
-  #DIRECTIONS = { east: [1, 0], west: [-1, 0], north: [0, 1], south: [0, -1]}
 
   def initialize(width, height)
     @width   = width
     @height  = height
     @start_x = rand(width)
     @start_y = 0
-    @end_x   = rand(width)
-    @end_y   = height - 1
 
-    @vertical_walls   = Array.new(width) { Array.new(height, true) }
-    @horizontal_walls = Array.new(width) { Array.new(height, true) }
+    @path = Maze.new(@start_x, @start_y, width, height).solve()
+  end
 
-    @path             = Array.new(width) { Array.new(height) }
 
-    @horizontal_walls[@end_x][@end_y] = false
+  def print
+    str_end = ''
+    array = MazeSides.new().build_sides(@width, @height, @path)
+    puts; puts; puts;
+    @height.times do |x|
+      @width.times do |y|
+        if array[x][y] != 0
+          if array[x+1] && array[x+1][y] != 0
+            str_end << 'E '
+          elsif array[x-1] && array[x-1][y] != 0
+            str_end << 'W '
+          elsif array[x][y+1] && array[x][y+1] != 0
+            str_end << 'S '
+          elsif array[x][y-1] && array[x][y-1] != 0
+            str_end << 'N '
+          end
+        end
+      end
+    end
+    str_end = str_end.split(' ')
+    str_end.each_with_index{ |r, i| str_end[i] = nil if str_end[i] == str_end[i+1]  }
+    str_end.compact!
+    p str_end
   end
 end
 
-# Demonstration:
-@dron = Map.new 5,5
-@dron.find_way
-@dron.print
+dron = Dron.new 100,50
+dron.print
+
