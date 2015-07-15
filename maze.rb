@@ -50,13 +50,29 @@ class Maze
   def generate_visit_cell(x, y)
     @visited[x][y] = true
 
-    coordinates = DIRECTIONS.shuffle.map { |dx, dy| [x + dx, y + dy] }
+    #coordinates = DIRECTIONS.shuffle.map { |dx, dy| [x + dx, y + dy] }
 
-    for new_x, new_y in coordinates
-      next unless move_valid?(new_x, new_y)
-      connect_cells(x, y, new_x, new_y)
-      generate_visit_cell(new_x, new_y)
-    end
+    #for new_x, new_y in coordinates
+     # next unless move_valid?(new_x, new_y)
+      #connect_cells(x, y, new_x, new_y)
+      #generate_visit_cell(new_x, new_y)
+    #end
+
+    @horizontal_walls = [[false, false, false, false, false, false, true],
+                         [true, false, true, true, false, true, true],
+                         [true, true, true, false, true, true, true],
+                         [false, true, false, true, false, true, true],
+                         [false, true, false, false, false, false, true],
+                         [false, false, true, false, true, true, false],
+                         [false, false, true, true, false, false, false]]
+
+    @vertical_walls = [[false, true, true, false, true, true, false],
+                       [false, false, false, false, true, false, false],
+                       [true, false, false, true, false, false, false],
+                       [false, true, true, false, true, true, false],
+                       [false, false, true, true, true, false, true],
+                       [false, true, false, false, false, false, true],
+                       [true, true, true, true, true, true, true]]
   end
 
   def reset_visiting_state
