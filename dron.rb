@@ -39,6 +39,6 @@ class Dron
   end
 end
 
-dron = Dron.new 100,50
+dron = Dron.new 7,7
 dron.print
 
